@@ -6,7 +6,6 @@ import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -39,12 +38,8 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
     private boolean isRecording;
     private File temFile;
     //    private MyTimer myTimer;
-    private static final long TIME_MAX = 15 * 1000;
-    private static final long TIME_INTERVAL = 500;
-
-    private static final int RC_STORAGE = 1001;
-
-
+//    private static final long TIME_MAX = 15 * 1000;
+//    private static final long TIME_INTERVAL = 500;
 //    private Camera.Size size;
 
     @Override
@@ -175,8 +170,19 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
 //        if (myTimer != null) {
 //            myTimer.cancel();
 //        }
-
-        mediaRecorder.stop();
+        //防止录制过短异常
+        mediaRecorder.setOnErrorListener(null);
+        mediaRecorder.setOnInfoListener(null);
+        mediaRecorder.setPreviewDisplay(null);
+        try {
+            mediaRecorder.stop();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mediaRecorder.reset();
         mediaRecorder.release();
         mediaRecorder = null;
@@ -264,8 +270,7 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
             //录制开始
             mediaRecorder.start();
             isRecording = true;
-//            myTimer = new MyTimer(TIME_MAX, TIME_INTERVAL);
-//            myTimer.start();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -303,31 +308,6 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
         if (isRecording)
             stopRecord(false);
     }
-
-
-//    public class MyTimer extends CountDownTimer {
-//        /**
-//         * @param millisInFuture    The number of millis in the future from the call
-//         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
-//         *                          is called.
-//         * @param countDownInterval The interval along the way to receive
-//         *                          {@link #onTick(long)} callbacks.
-//         */
-//        public MyTimer(long millisInFuture, long countDownInterval) {
-//            super(millisInFuture, countDownInterval);
-//        }
-//
-//        @Override
-//        public void onTick(long millisUntilFinished) {
-//            int progress = (int) ((TIME_MAX - millisUntilFinished) / (double) TIME_MAX * 100);
-//            binding.pbRecord.setProgress(progress);
-//        }
-//
-//        @Override
-//        public void onFinish() {
-//            stopRecord(false);
-//        }
-//    }
 
 
     @Override
