@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SurfaceView
+            android:id="@+id/sv_record"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.billy.billyvideoplayer.view.RecordButtonView
+            android:id="@+id/record_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="50dp"
+            />
+
+   <!--     <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClick}"
+            android:text="start"
+            app:layout_constraintBottom_toTopOf="@id/pb_record"/>
+-->
+        <Button
+            android:id="@+id/btn_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="@{onClick}"
+            android:text="switch"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+       <!-- <Button
+            android:id="@+id/btn_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClick}"
+            android:text="end"
+            app:layout_constraintBottom_toTopOf="@id/pb_record"
+            app:layout_constraintRight_toRightOf="parent" />-->
+
+        <!--<SeekBar-->
+            <!--android:id="@+id/pb_record"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:focusable="true"-->
+            <!--android:max="100"-->
+            <!--android:maxHeight="4.0dip"-->
+            <!--android:minHeight="4.0dip"-->
+            <!--android:paddingLeft="16.0dip"-->
+            <!--android:paddingRight="16.0dip"-->
+            <!--android:progress="100"-->
+            <!--android:progressDrawable="@drawable/po_seekbar"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+    </android.support.constraint.ConstraintLayout>
+</layout>

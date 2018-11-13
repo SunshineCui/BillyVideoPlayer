@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        app:flexDirection="column">
+
+        <TextView
+            style="@style/main_textview_style"
+            android:text="Hello World!" />
+
+
+        <TextView
+            android:id="@+id/text_view_list"
+            style="@style/main_textview_style"
+            android:onClick="@{onClick}"
+            android:text="list" />
+
+
+        <TextView
+            android:id="@+id/text_view_record"
+            style="@style/main_textview_style"
+            android:onClick="@{onClick}"
+            android:text="record" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>
