@@ -45,7 +45,7 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
     private static final int RC_STORAGE = 1001;
 
 
-    private Camera.Size size;
+//    private Camera.Size size;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -150,12 +150,13 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
                         parameters.setFocusMode(mode);
                 }
             }
-            List<Camera.Size> sizes = parameters.getSupportedVideoSizes();
-            if (sizes.size() > 0) {
-                size = sizes.get(sizes.size() - 1);
-            }
+//            List<Camera.Size> sizes = parameters.getSupportedVideoSizes();
+//            if (sizes.size() > 0) {
+//                size = sizes.get(sizes.size() - 1);
+//            }
 
             camera.setParameters(parameters);
+            camera.cancelAutoFocus();//为了自动对焦,测试没啥作用
             camera.startPreview();
         } catch (IOException e) {
             e.printStackTrace();
@@ -265,7 +266,7 @@ public class RecordActivity extends AppCompatActivity implements SurfaceHolder.C
             isRecording = true;
 //            myTimer = new MyTimer(TIME_MAX, TIME_INTERVAL);
 //            myTimer.start();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
